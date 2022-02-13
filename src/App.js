@@ -32,13 +32,13 @@ function App({
       loadCharacters(data)
       toggleLoading()
     })()
-  }, [])
+  }, [loadCharacters, toggleLoading])
 
   return (
     <div className="App">
       <Header />
       <div className='characters'>
-        {isLoading ? <LoadingSpinner/> : chars?.map(c => CharacterCard(c))}
+        {isLoading ? <LoadingSpinner/> : chars?.map(c => <CharacterCard key={c._id} character={c} />)}
       </div>
     </div>
   );
