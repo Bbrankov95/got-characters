@@ -1,0 +1,42 @@
+.spinner {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border-left: 7px solid #f1ede3;
+  border-top: 7px solid #f1ede3;
+  border-style: dotted;
+  -webkit-transition: -webkit-animation .2s;
+  transition: -webkit-animation .2s;
+  transition: animation .2s;
+  transition: animation .2s, -webkit-animation .2s;
+  -webkit-animation: spin 2s infinite linear;
+          animation: spin 2s infinite linear;
+  margin: auto;
+}
+
+.wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.wrapper h2 {
+  color: #f1ede3;
+}
+
+@-webkit-keyframes spin {
+  to {
+    -webkit-transform: rotate(1turn);
+            transform: rotate(1turn);
+  }
+}
+
+@keyframes spin {
+  to {
+    -webkit-transform: rotate(1turn);
+            transform: rotate(1turn);
+  }
+}
+/*# sourceMappingURL=LoadingSpinner.module.css.map */

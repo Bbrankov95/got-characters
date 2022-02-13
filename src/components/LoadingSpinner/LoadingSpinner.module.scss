@@ -1,0 +1,30 @@
+@import '../../styles/variables/variables.module.scss';
+
+.spinner {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border-left: 7px solid $maincolor;
+    border-top: 7px solid $maincolor;
+    border-style: dotted;
+    transition: animation .2s;
+    animation: spin 2s infinite linear;
+    margin: auto;
+}
+
+.wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+
+    h2 {
+        color: $maincolor;
+    }
+}
+
+@keyframes spin {
+    to {
+       transform: rotate(1turn);
+    }
+}

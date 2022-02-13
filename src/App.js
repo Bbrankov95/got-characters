@@ -1,25 +1,47 @@
-import logo from './logo.svg';
 import './App.css';
+import { useEffect } from 'react';
+import { connect } from 'react-redux';
+import CharacterCard from './components/CharacterCard/CharacterCard';
+import Header from './components/Header/Header';
+import { fetchData } from './api/services';
+import { loadCharacters, toggleLoading } from './store/actions/actions';
+import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner';
 
-function App() {
+const mapDispatch = {
+  loadCharacters,
+  toggleLoading
+}
+
+const mapState = state => {
+  return {
+    chars: state.chars,
+    isLoading: state.isLoading
+  }
+}
+
+function App({
+  chars,
+  isLoading,
+  loadCharacters,
+  toggleLoading
+}) {
+  useEffect(() => {
+    (async () => {
+      toggleLoading()
+      const data = await fetchData();
+      loadCharacters(data)
+      toggleLoading()
+    })()
+  }, [])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <div className='characters'>
+        {isLoading ? <LoadingSpinner/> : chars?.map(c => CharacterCard(c))}
+      </div>
     </div>
   );
 }
 
-export default App;
+export default connect(mapState, mapDispatch)(App);
